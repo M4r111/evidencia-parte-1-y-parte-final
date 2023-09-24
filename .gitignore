@@ -1,0 +1,18 @@
+# Directorios generados por IDEs
+.idea/
+.classpath
+.project
+
+# Archivos temporales
+*.swp
+
+# Archivos compilados Java
+*.class
+
+# Archivos de construcción
+/bin/
+/target/
+/out/
+
+# Archivos de configuración
+*.iml
