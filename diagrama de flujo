@@ -1,0 +1,98 @@
+Inicio
+|
+V
+[Iniciar Programa]
+|
+V
+[Autenticación]
+|-----------------------|
+|                       |
+| Usuario y Contraseña  |
+| Válidos?               | No
+|                       |
+|-----------------------|
+                        |
+                        V
+                   [Error de Autenticación]
+                        |
+                        V
+[Mostrar Menú Principal] ---Sí
+|-----------------------|  |
+|                       |  |
+| Opción seleccionada  |  |
+| - Alta de Doctores    |  |
+| - Alta de Pacientes   |  |
+| - Crear Cita          |  |
+| - Relacionar Cita     |  |
+| - Salir               |  |
+|                       |  |
+|-----------------------|  |
+                        |
+                        V
+[Ejecutar Opción]
+|-----------------------|
+|                       |
+| Opción: Alta de Doctores |
+|-----------------------|
+|                       |
+V                       |
+[Solicitar Datos]        |
+|                       |
+V                       |
+[Capturar Datos]         |
+|                       |
+V                       |
+[Guardar Doctor]        |
+|                       |
+|-----------------------|
+|                       |
+| Opción: Alta de Pacientes |
+|-----------------------|
+|                       |
+V                       |
+[Solicitar Datos]        |
+|                       |
+V                       |
+[Capturar Datos]         |
+|                       |
+V                       |
+[Guardar Paciente]      |
+|                       |
+|-----------------------|
+|                       |
+| Opción: Crear Cita    |
+|-----------------------|
+|                       |
+V                       |
+[Solicitar Datos de Cita]|
+|                       |
+V                       |
+[Capturar Datos de Cita] |
+|                       |
+V                       |
+[Guardar Cita]          |
+|                       |
+|-----------------------|
+|                       |
+| Opción: Relacionar Cita |
+|-----------------------|
+|                       |
+V                       |
+[Solicitar Datos de Relación]|
+|                       |
+V                       |
+[Capturar Datos de Relación] |
+|                       |
+V                       |
+[Relacionar Cita]        |
+|                       |
+|-----------------------|
+|                       |
+| Opción: Salir         |
+|-----------------------|
+|                       |
+| Fin del Programa      |
+|                       |
+------------------------
+
+  
