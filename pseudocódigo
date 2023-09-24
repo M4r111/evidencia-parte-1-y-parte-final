@@ -1,0 +1,125 @@
+Clase SistemaMedico {
+    Lista de Doctores
+    Lista de Pacientes
+    Lista de Citas
+
+    Método altaDoctor():
+        Solicitar nombre del doctor
+        Solicitar especialidad del doctor
+        Crear un nuevo Doctor con el nombre y la especialidad ingresados
+        Agregar el Doctor a la Lista de Doctores
+
+    Método altaPaciente():
+        Solicitar nombre del paciente
+        Solicitar historial médico del paciente
+        Crear un nuevo Paciente con el nombre y el historial médico ingresados
+        Agregar el Paciente a la Lista de Pacientes
+
+    Método crearCita():
+        Solicitar fecha y hora de la cita
+        Solicitar motivo de la cita
+        Mostrar lista de doctores disponibles
+        Solicitar selección de un doctor
+        Mostrar lista de pacientes
+        Solicitar selección de un paciente
+        Crear una nueva Cita con la fecha, el motivo, el doctor y el paciente seleccionados
+        Agregar la Cita a la Lista de Citas
+
+    Método relacionarCita():
+        Mostrar lista de doctores
+        Solicitar selección de un doctor
+        Mostrar lista de pacientes
+        Solicitar selección de un paciente
+        Mostrar lista de citas del paciente seleccionado
+        Solicitar selección de una cita
+        Asociar la cita seleccionada con el doctor y el paciente seleccionados
+
+    Método mostrarMenuPrincipal():
+        Mostrar opciones del menú:
+        1. Alta de Doctores
+        2. Alta de Pacientes
+        3. Crear Cita
+        4. Relacionar Cita
+        5. Salir
+        Solicitar selección de opción
+
+        Si opción es 1:
+            Llamar a altaDoctor()
+        Si opción es 2:
+            Llamar a altaPaciente()
+        Si opción es 3:
+            Llamar a crearCita()
+        Si opción es 4:
+            Llamar a relacionarCita()
+        Si opción es 5:
+            Salir del programa
+
+    Método validarAutenticacion():
+        Solicitar identificador de usuario y contraseña
+        Si identificador y contraseña son válidos:
+            Retornar verdadero
+        De lo contrario:
+            Retornar falso
+}
+
+Clase Persona {
+    Propiedad id
+    Propiedad nombre
+
+    Método getNombre():
+        Retornar nombre
+
+    Método setNombre(nombre):
+        Asignar nombre
+}
+
+Clase Doctor hereda de Persona {
+    Propiedad especialidad
+
+    Método getEspecialidad():
+        Retornar especialidad
+
+    Método setEspecialidad(especialidad):
+        Asignar especialidad
+}
+
+Clase Paciente hereda de Persona {
+    Propiedad historialMedico
+
+    Método getHistorialMedico():
+        Retornar historialMedico
+
+    Método setHistorialMedico(historial):
+        Asignar historialMedico
+}
+
+Clase Cita {
+    Propiedad fecha
+    Propiedad motivo
+    Propiedad doctor
+    Propiedad paciente
+
+    Método getFecha():
+        Retornar fecha
+
+    Método setFecha(fecha):
+        Asignar fecha
+
+    Método getMotivo():
+        Retornar motivo
+
+    Método setMotivo(motivo):
+        Asignar motivo
+
+    Método getDoctor():
+        Retornar doctor
+
+    Método setDoctor(doctor):
+        Asignar doctor
+
+    Método getPaciente():
+        Retornar paciente
+
+    Método setPaciente(paciente):
+        Asignar paciente
+}
