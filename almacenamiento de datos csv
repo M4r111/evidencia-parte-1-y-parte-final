@@ -1,0 +1,53 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class CSVExample {
+    public static void main(String[] args) {
+        // Escribir datos en un archivo CSV
+        escribirCSV("datos.csv");
+
+        // Leer datos desde un archivo CSV
+        leerCSV("datos.csv");
+    }
+
+    public static void escribirCSV(String nombreArchivo) {
+        try (FileWriter writer = new FileWriter(nombreArchivo)) {
+            // Encabezado
+            writer.write("Nombre,Edad,Email\n");
+
+            // Datos de ejemplo
+            for (int i = 1; i <= 3; i++) {
+                String nombre = "example" + i;
+                int edad = 25 + i;
+                String email = "example" + i + "@example.com";
+
+                String filaCSV = nombre + "," + edad + "," + email + "\n";
+                writer.write(filaCSV);
+            }
+
+            System.out.println("Archivo CSV generado exitosamente.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void leerCSV(String nombreArchivo) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(nombreArchivo))) {
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                // Dividir la línea en valores utilizando la coma como separador
+                String[] valores = linea.split(",");
+                if (valores.length == 3) {
+                    String nombre = valores[0];
+                    int edad = Integer.parseInt(valores[1]);
+                    String email = valores[2];
+                    System.out.println("Nombre: " + nombre + ", Edad: " + edad + ", Email: " + email);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
