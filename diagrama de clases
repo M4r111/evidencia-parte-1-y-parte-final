@@ -1,0 +1,101 @@
++--------------------------------------+
+|             SistemaMedico             |
++--------------------------------------+
+| - doctores: List<Doctor>            |
+| - pacientes: List<Paciente>          |
+| - citas: List<Cita>                  |
++--------------------------------------+
+| + altaDoctor(): void                 |
+| + altaPaciente(): void               |
+| + crearCita(): void                  |
+| + relacionarCita(): void             |
+| + mostrarMenuPrincipal(): void       |
+| - validarAutenticacion(): boolean    |
+| + buscarDoctorPorNombre(nombre:      |
+|   String): List<Doctor>              |
+| + buscarPacientePorNombre(nombre:    |
+|   String): List<Paciente>            |
+| + listarCitasPorPaciente(paciente:   |
+|   Paciente): List<Cita>              |
++--------------------------------------+
+
+                 |
+                 |   Relación
+                 v
++--------------------------------------+
+|               Persona                |
++--------------------------------------+
+| - id: int                            |
+| - nombre: String                     |
++--------------------------------------+
+| + getNombre(): String                |
+| + setNombre(nombre: String): void    |
++--------------------------------------+
+     ^
+     |
+ Herencia|
+     |
+     |
++--------------------------------------+
+|               Doctor                 |
++--------------------------------------+
+| - especialidad: String               |
++--------------------------------------+
+| + getEspecialidad(): String          |
+| + setEspecialidad(especialidad:      |
+|   String): void                     |
+| + listarCitas(): List<Cita>          |
++--------------------------------------+
+
+                 |
+                 |   Relación
+                 v
++--------------------------------------+
+|              Paciente                |
++--------------------------------------+
+| - historialMedico: String            |
++--------------------------------------+
+| + getHistorialMedico(): String       |
+| + setHistorialMedico(historial:      |
+|   String): void                     |
+| + listarCitas(): List<Cita>          |
++--------------------------------------+
+
+                 |
+                 |   Relación
+                 v
++--------------------------------------+
+|                Cita                  |
++--------------------------------------+
+| - fecha: Date                        |
+| - motivo: String                     |
+| - doctor: Doctor                     |
+| - paciente: Paciente                 |
+| - estado: EstadoCita                 |
++--------------------------------------+
+| + getFecha(): Date                   |
+| + setFecha(fecha: Date): void        |
+| + getMotivo(): String                |
+| + setMotivo(motivo: String): void    |
+| + getDoctor(): Doctor                |
+| + setDoctor(doctor: Doctor): void    |
+| + getPaciente(): Paciente            |
+| + setPaciente(paciente: Paciente):   |
+|   void                               |
+| + getEstado(): EstadoCita            |
+| + setEstado(estado: EstadoCita):     |
+|   void                               |
++--------------------------------------+
+
++--------------------------------------+
+|            EstadoCita                |
++--------------------------------------+
+| - nombre: String                     |
+| - descripcion: String                |
++--------------------------------------+
+| + getNombre(): String                |
+| + setNombre(nombre: String): void    |
+| + getDescripcion(): String           |
+| + setDescripcion(descripcion:        |
+|   String): void                     |
++--------------------------------------+
