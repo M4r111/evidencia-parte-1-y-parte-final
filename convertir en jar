@@ -1,0 +1,2 @@
+jar cvfe evidencia-parte-1-y-parte-final.jar SistemaMedicoApp <archivos y carpetas>
+jar cvfe evidencia-parte-1-y-parte-final.jar SistemaMedicoApp Main.class Doctor.class Paciente.class Cita.class
