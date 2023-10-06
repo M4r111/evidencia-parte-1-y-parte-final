@@ -1,1 +1,357 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+class Usuario {
+    private String nombreUsuario;
+    private String contraseña;
+
+    public Usuario(String nombreUsuario, String contraseña) {
+        this.nombreUsuario = nombreUsuario;
+        this.contraseña = contraseña;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+}
+
+class Doctor {
+    private String nombre;
+    private String especialidad;
+
+    public Doctor(String nombre, String especialidad) {
+        this.nombre = nombre;
+        this.especialidad = especialidad;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getEspecialidad() {
+        return especialidad;
+    }
+}
+
+class Paciente {
+    private String nombre;
+    private String historialMedico;
+
+    public Paciente(String nombre, String historialMedico) {
+        this.nombre = nombre;
+        this.historialMedico = historialMedico;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getHistorialMedico() {
+        return historialMedico;
+    }
+}
+
+class Cita {
+    private String fechaHora;
+    private String motivo;
+    private Doctor doctor;
+    private Paciente paciente;
+
+    public Cita(String fechaHora, String motivo, Doctor doctor, Paciente paciente) {
+        this.fechaHora = fechaHora;
+        this.motivo = motivo;
+        this.doctor = doctor;
+        this.paciente = paciente;
+    }
+
+    public String getFechaHora() {
+        return fechaHora;
+    }
+
+    public String getMotivo() {
+        return motivo;
+    }
+
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+}
+
+public class SistemaMedicoApp {
+    private static List<Usuario> usuarios = new ArrayList<>();
+    private static List<Doctor> doctores = new ArrayList<>();
+    private static List<Paciente> pacientes = new ArrayList<>();
+    private static List<Cita> citas = new ArrayList<>();
+
+    public static void main(String[] args) {
+        // Agregar un usuario administrador predeterminado
+        usuarios.add(new Usuario("admin", "admin123"));
+
+        Scanner input = new Scanner(System.in);
+        int opcion;
+
+        do {
+            System.out.println("Menú Principal:");
+            System.out.println("1. Iniciar sesión");
+            System.out.println("2. Registrar usuario");
+            System.out.println("3. Salir");
+            System.out.print("Seleccione una opción: ");
+            opcion = input.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    Usuario usuarioAutenticado = iniciarSesion();
+                    if (usuarioAutenticado != null) {
+                        mostrarMenuPrincipal();
+                    } else {
+                        System.out.println("Inicio de sesión fallido.");
+                    }
+                    break;
+                case 2:
+                    registrarUsuario();
+                    break;
+                case 3:
+                    System.out.println("Saliendo del programa...");
+                    break;
+                default:
+                    System.out.println("Opción no válida. Intente nuevamente.");
+            }
+        } while (opcion != 3);
+    }
+
+    private static Usuario iniciarSesion() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Ingrese su nombre de usuario:");
+        String nombreUsuario = input.next();
+        System.out.println("Ingrese su contraseña:");
+        String contraseña = input.next();
+
+        for (Usuario usuario : usuarios) {
+            if (usuario.getNombreUsuario().equals(nombreUsuario) && usuario.getContraseña().equals(contraseña)) {
+                System.out.println("Inicio de sesión exitoso.");
+                return usuario;
+            }
+        }
+        return null;
+    }
+
+    private static void registrarUsuario() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Ingrese su nombre de usuario:");
+        String nombreUsuario = input.next();
+        System.out.println("Ingrese su contraseña:");
+        String contraseña = input.next();
+        usuarios.add(new Usuario(nombreUsuario, contraseña));
+        System.out.println("Usuario registrado exitosamente.");
+    }
+
+    private static void mostrarMenuPrincipal() {
+        Scanner input = new Scanner(System.in);
+        int opcion;
+
+        do {
+            System.out.println("Menú Principal:");
+            System.out.println("1. Gestión de Doctores");
+            System.out.println("2. Gestión de Pacientes");
+            System.out.println("3. Crear Cita");
+            System.out.println("4. Relacionar Cita");
+            System.out.println("5. Cerrar sesión");
+            System.out.print("Seleccione una opción: ");
+            opcion = input.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    gestionarDoctores();
+                    break;
+                case 2:
+                    gestionarPacientes();
+                    break;
+                case 3:
+                    crearCita();
+                    break;
+                case 4:
+                    relacionarCita();
+                    break;
+                case 5:
+                    System.out.println("Cerrando sesión...");
+                    break;
+                default:
+                    System.out.println("Opción no válida. Intente nuevamente.");
+            }
+        } while (opcion != 5);
+    }
+
+    private static void gestionarDoctores() {
+        Scanner input = new Scanner(System.in);
+        int opcion;
+
+        do {
+            System.out.println("Gestión de Doctores:");
+            System.out.println("1. Alta de Doctor");
+            System.out.println("2. Listar Doctores");
+            System.out.println("3. Volver al Menú Principal");
+            System.out.print("Seleccione una opción: ");
+            opcion = input.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    altaDoctor();
+                    break;
+                case 2:
+                    listarDoctores();
+                    break;
+                case 3:
+                    System.out.println("Volviendo al Menú Principal...");
+                    break;
+                default:
+                    System.out.println("Opción no válida. Intente nuevamente.");
+            }
+        } while (opcion != 3);
+    }
+
+    private static void altaDoctor() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Ingrese el nombre del doctor:");
+        String nombre = input.nextLine();
+        System.out.println("Ingrese la especialidad del doctor:");
+        String especialidad = input.nextLine();
+        Doctor doctor = new Doctor(nombre, especialidad);
+        doctores.add(doctor);
+        System.out.println("Doctor registrado exitosamente.");
+    }
+
+    private static void listarDoctores() {
+        System.out.println("Lista de Doctores:");
+        for (Doctor doctor : doctores) {
+            System.out.println("Nombre: " + doctor.getNombre());
+            System.out.println("Especialidad: " + doctor.getEspecialidad());
+            System.out.println();
+        }
+    }
+
+    private static void gestionarPacientes() {
+        Scanner input = new Scanner(System.in);
+        int opcion;
+
+        do {
+            System.out.println("Gestión de Pacientes:");
+            System.out.println("1. Alta de Paciente");
+            System.out.println("2. Listar Pacientes");
+            System.out.println("3. Volver al Menú Principal");
+            System.out.print("Seleccione una opción: ");
+            opcion = input.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    altaPaciente();
+                    break;
+                case 2:
+                    listarPacientes();
+                    break;
+                case 3:
+                    System.out.println("Volviendo al Menú Principal...");
+                    break;
+                default:
+                    System.out.println("Opción no válida. Intente nuevamente.");
+            }
+        } while (opcion != 3);
+    }
+
+    private static void altaPaciente() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Ingrese el nombre del paciente:");
+        String nombre = input.nextLine();
+        System.out.println("Ingrese el historial médico del paciente:");
+        String historialMedico = input.nextLine();
+        Paciente paciente = new Paciente(nombre, historialMedico);
+        pacientes.add(paciente);
+        System.out.println("Paciente registrado exitosamente.");
+    }
+
+    private static void listarPacientes() {
+        System.out.println("Lista de Pacientes:");
+        for (Paciente paciente : pacientes) {
+            System.out.println("Nombre: " + paciente.getNombre());
+            System.out.println("Historial Médico: " + paciente.getHistorialMedico());
+            System.out.println();
+        }
+    }
+
+    private static void crearCita() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Ingrese la fecha y hora de la cita:");
+        String fechaHora = input.nextLine();
+        System.out.println("Ingrese el motivo de la cita:");
+        String motivo = input.nextLine();
+
+        System.out.println("Doctores disponibles:");
+        for (int i = 0; i < doctores.size(); i++) {
+            Doctor doctor = doctores.get(i);
+            System.out.println(i + ". " + doctor.getNombre() + " (" + doctor.getEspecialidad() + ")");
+        }
+        System.out.print("Seleccione un doctor: ");
+        int seleccionDoctor = input.nextInt();
+        Doctor doctorSeleccionado = doctores.get(seleccionDoctor);
+
+        System.out.println("Pacientes disponibles:");
+        for (int i = 0; i < pacientes.size(); i++) {
+            Paciente paciente = pacientes.get(i);
+            System.out.println(i + ". " + paciente.getNombre() + " (Historial: " + paciente.getHistorialMedico() + ")");
+        }
+        System.out.print("Seleccione un paciente: ");
+        int seleccionPaciente = input.nextInt();
+        Paciente pacienteSeleccionado = pacientes.get(seleccionPaciente);
+
+        Cita cita = new Cita(fechaHora, motivo, doctorSeleccionado, pacienteSeleccionado);
+        citas.add(cita);
+        System.out.println("Cita creada exitosamente.");
+    }
+
+    private static void relacionarCita() {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Lista de doctores:");
+        for (int i = 0; i < doctores.size(); i++) {
+            Doctor doctor = doctores.get(i);
+            System.out.println(i + ". " + doctor.getNombre() + " (" + doctor.getEspecialidad() + ")");
+        }
+        System.out.print("Seleccione un doctor: ");
+        int seleccionDoctor = input.nextInt();
+        Doctor doctorSeleccionado = doctores.get(seleccionDoctor);
+
+        System.out.println("Lista de pacientes:");
+        for (int i = 0; i < pacientes.size(); i++) {
+            Paciente paciente = pacientes.get(i);
+            System.out.println(i + ". " + paciente.getNombre() + " (Historial: " + paciente.getHistorialMedico() + ")");
+        }
+        System.out.print("Seleccione un paciente: ");
+        int seleccionPaciente = input.nextInt();
+        Paciente pacienteSeleccionado = pacientes.get(seleccionPaciente);
+
+        System.out.println("Citas del paciente " + pacienteSeleccionado.getNombre() + ":");
+        for (int i = 0; i < citas.size(); i++) {
+            Cita cita = citas.get(i);
+            if (cita.getPaciente() == pacienteSeleccionado) {
+                System.out.println(i + ". Fecha y Hora: " + cita.getFechaHora());
+                System.out.println("   Motivo: " + cita.getMotivo());
+            }
+        }
+        System.out.print("Seleccione una cita: ");
+        int seleccionCita = input.nextInt();
+        Cita citaSeleccionada = citas.get(seleccionCita);
+
+        citaSeleccionada.setDoctor(doctorSeleccionado);
+        citaSeleccionada.setPaciente(pacienteSeleccionado);
+        System.out.println("Cita relacionada exitosamente.");
+    }
+}
 
