@@ -16,3 +16,6 @@
 
 # Archivos de configuración
 *.iml
+
+# Ignorar archivos CSV en la carpeta db
+*.csv
